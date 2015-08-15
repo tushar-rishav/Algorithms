@@ -1,7 +1,7 @@
 # Algorithms
 
 ```sh
-Compilation of different Algorithms and Data Structures i\'ve known so far.
+Compilation of different Algorithms and Data Structures i have known so far.
 Beside, i will keep updating the repo!
 
 ```
