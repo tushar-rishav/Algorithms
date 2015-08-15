@@ -7,7 +7,7 @@ Beside, i will keep updating the repo!
 ```
 
 ```sh
-Implementation of diff Algorithms in Lisp,Python and C++
+Implementation of diff Algorithms in Haskell,Python and C++
 
 ```
 
