@@ -41,7 +41,7 @@ ll nthmagic(int n){
 		if(n&1)
 			sm+=p;
 		p*=5;
-		n>>=1;	// left shift by 1
+		n>>=1;	// right shift by 1
 	}
 	return sm;
 }
