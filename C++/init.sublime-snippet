@@ -1,7 +1,5 @@
-/*
-Count the number of ones in the binary representation of the given number
-*/
-
+<snippet>
+	<content><![CDATA[
 #include <bits/stdc++.h>
 
 # define DEBUG(x) cout << '>' << #x << ':' << x << endl;
@@ -62,20 +60,16 @@ const unsigned char option7 = 0x40; // hex for 0100 0000
 const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
-int count1(int n){
-	int count = 0;
-	while(n){
-	n = n & (n-1);
-	count++;
-	}
-	return count;
 
+int main()
+{  
+	std::ios_base::sync_with_stdio(false);
+
+	return 0;
 }
-int main(){
-	
-sync_false;
-int n;
-csf(n);
-cpf(count1(n));
-return 0;
-}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>init</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

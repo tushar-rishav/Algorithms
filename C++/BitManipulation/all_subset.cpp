@@ -4,36 +4,91 @@
 	
 #include <bits/stdc++.h>
 
-#define pb push_back
-#define vci vector< int >
+# define DEBUG(x) cout << '>' << #x << ':' << x << endl;
+
+# define ll long long
+# define ull unsigned long long
+# define db double
+
+# define pll pair < ll, ll >
+# define pllit pair < ll, ll >::iterator
+# define mll map < ll, ll >
+# define mllit map < ll, ll >::iterator
+# define msl map < string, ll >
+# define mslit map < string, ll >::iterator
+# define vll vector< ll >
+# define vllit vector< ll >::iterator
+# define sll set< ll >
+# define sllit set< ll >::iterator
+
+# define fs first 
+# define se second
+# define bg begin
+# define en end
+# define mp make_pair
+# define pub push_back
+# define pob pop_back
+# define cl clear
+# define em empty
+# define fe for_each
+
+# define srt(v) sort( v.begin(), v.end() )
+# define srtc(v, x) sort( v.begin(), v.end(), x)
+# define srtr(v) sort( v.begin(), v.end(), greater< ll >())
+
+# define rep(i, n) for( ll (i) = 0; (i) < (n); (i)++)
+# define REP(i, n) for( ll (i) = 1; (i) <= (n); (i)++)
+# define wl(i) while((i)--)
+# define sf(i) scanf("%lld",&(i))
+# define pf(i) printf("%lld ",(i))
+# define pfn(i) printf("%lld\n",(i))
+# define csf(i) cin>>(i)
+# define cpf(i) cout<<(i)<<" "
+# define cpfn(i) cout<<(i)<<endl
+
+
+# define MAX_PRIME 0
+# define SEGMENT_MAX 100005
+# define MOD 1000000007
+# define sync_false std::ios_base::sync_with_stdio(false)
+
+const unsigned char option1 = 0x01; // hex for 0000 0001
+const unsigned char option2 = 0x02; // hex for 0000 0010
+const unsigned char option3 = 0x04; // hex for 0000 0100
+const unsigned char option4 = 0x08; // hex for 0000 1000
+const unsigned char option5 = 0x10; // hex for 0001 0000
+const unsigned char option6 = 0x20; // hex for 0010 0000
+const unsigned char option7 = 0x40; // hex for 0100 0000
+const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-void subset( vci &A ){
-	int N =  A.size();
-	for(int i =0 ; i< (1<<N) ; ++i ){			// total possible permutation is 2**N. 
+void subset( vll &A ){
+	int n =  A.size();
+	rep(i,(1<<n)){			// total possible permutation is 2**N. 
 
-		for(int j=0;j<N;j++){
-			if(i & (1<<j) )			// if jth bit is set in i
-				cout << A[j]<<",";
+		rep(j,n){
+			if(i & (1<<j) )			//left shift; if jth bit is set in i
+				cpf(A[j]);
 		}
-		cout<<endl;
+		cpfn("");
 	}
 
 
 }
 
 int main(){
-
-	int N,temp;
-	vci A;
-	cout<< "Enter the number of elements of set:\t";
-	cin>>N;
-	cout<< "Enter number of elements of set:\n";
 	
-	for(int i =0;i<N;i++){
-		cin>>temp;
-		A.pb(temp);
+	sync_false;
+	int n,temp;
+	vll A;
+	cpf("Enter the count of elements in set:\t");
+	csf(n);
+	cpfn("Enter the elements of set:");
+	
+	rep(i, n){
+		csf(temp);
+		A.pub(temp);
 	}
 	subset(A);
 
