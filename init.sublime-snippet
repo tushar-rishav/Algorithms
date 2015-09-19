@@ -1,12 +1,28 @@
 <snippet>
 	<content><![CDATA[
 #include <bits/stdc++.h>
+typedef long long ll;
+typedef unsigned long long ull;
+typedef double db;
+
+# define fs first 
+# define se second
+# define bg begin
+# define rbg rbegin
+# define en end
+# define ren rend
+# define mp make_pair
+# define pub push_back
+# define pob pop_back
+# define cl clear
+# define em empty
+# define fe for_each
+# define np next_permutation
+# define pp prev_permutation
 
 # define DEBUG(x) cout << '>' << #x << ':' << x << endl;
-
-# define ll long long
-# define ull unsigned long long
-# define db double
+# define all(c) c.bg(), c.en()
+# define rall(c) c.rbg(), c.ren()
 
 # define pll pair < ll, ll >
 # define pllit pair < ll, ll >::iterator
@@ -15,24 +31,19 @@
 # define msl map < string, ll >
 # define mslit map < string, ll >::iterator
 # define vll vector< ll >
+# define vvll vector< vll >
 # define vllit vector< ll >::iterator
+# define vc vector<char>
+# define vcit vector<char>::iterator
 # define sll set< ll >
 # define sllit set< ll >::iterator
 
-# define fs first 
-# define se second
-# define bg begin
-# define en end
-# define mp make_pair
-# define pub push_back
-# define pob pop_back
-# define cl clear
-# define em empty
-# define fe for_each
-
-# define srt(v) sort( v.begin(), v.end() )
-# define srtc(v, x) sort( v.begin(), v.end(), x)
-# define srtr(v) sort( v.begin(), v.end(), greater< ll >())
+# define srt(v) sort( v.bg(), v.en() )
+# define srtr(v) sort( v.rbg(), v.ren())
+# define srtc(v, x) sort( v.bg(), v.en(), x)
+# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
+# define present(container, element) (container.find(element) != container.en()) 
+# define cpresent(container, element) (find(all(container),element) != container.en())
 
 # define rep(i, n) for( ll (i) = 0; (i) < (n); (i)++)
 # define REP(i, n) for( ll (i) = 1; (i) <= (n); (i)++)
@@ -63,7 +74,7 @@ using namespace std;
 
 int main()
 {  
-	std::ios_base::sync_with_stdio(false);
+	sync_false;
 
 	return 0;
 }
