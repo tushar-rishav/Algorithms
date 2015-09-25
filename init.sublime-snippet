@@ -42,10 +42,11 @@ typedef double db;
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)
 # define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
-# define present(container, element) (container.find(element) != container.en()) 
-# define cpresent(container, element) (find(all(container),element) != container.en())
+# define present(container, element) (container.find(element) != container.en()) // O(logN) : use in case of Set and Maps
+# define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N)
 
 # define rep(i, n) for( ll (i) = 0; (i) < (n); (i)++)
+# define repk(i,k,n) for( ll (i) = k; (i) < (n); (i)++)
 # define REP(i, n) for( ll (i) = 1; (i) <= (n); (i)++)
 # define wl(i) while((i)--)
 # define sf(i) scanf("%lld",&(i))
