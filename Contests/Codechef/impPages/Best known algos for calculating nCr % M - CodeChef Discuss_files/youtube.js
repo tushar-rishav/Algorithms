@@ -1,0 +1,1 @@
+$().ready(function(){$('a[href*="youtube.com"]').viewbox({widthWindow:900})});

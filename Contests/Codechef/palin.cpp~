@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int palindrome(long long)
+
+int main(){
+
+
+
+
+
+return 0;
+}

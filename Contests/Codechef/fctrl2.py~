@@ -1,0 +1,13 @@
+#! /usr/bin/env python
+from math import factorial
+
+
+def main():
+    t=raw_input().to_i
+    while t:
+    	n=raw_input()
+    	print factorial(n.to_i)
+    	t-=1
+
+if __name__=="__main__":
+    main()

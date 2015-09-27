@@ -1,0 +1,17 @@
+from random import randint
+from math import pow
+
+def main():
+	N=[10,100,pow(10,3),pow(10,4),pow(10,4)]
+	u=[10,100,pow(10,3),1000,pow(10,5)]
+	print 5 # no of test cases
+	for i in range(5):
+		print N[i] # N
+		for j in range(int(N[i])):
+			if j==(N[i]-1):
+				print randint(0,u[i])
+			else:
+				print randint(0,u[i]),
+if __name__=="__main__":
+	main()			
+			

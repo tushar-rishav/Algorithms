@@ -1,5 +1,5 @@
 /*
-	Find the GCD of two given numbers.
+	Find the GCD of two given numbers with recursive approach.
 	NOTE: gcd(a,b) = gcd(b%a, a)
 */
 #include <bits/stdc++.h>

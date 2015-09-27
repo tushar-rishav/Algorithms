@@ -35,7 +35,6 @@ typedef double db;
 # define vcit vector<char>::iterator
 # define sll set< ll >
 # define sllit set< ll >::iterator
-
 # define srt(v) sort( v.bg(), v.en() )
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)

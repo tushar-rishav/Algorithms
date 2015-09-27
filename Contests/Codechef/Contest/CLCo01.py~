@@ -1,0 +1,43 @@
+#! /usr/bin/env python
+
+def main():
+	t=input()
+	
+	d_r=list()
+	while t:
+		n=input()
+		while n:
+		
+			inp=map(str, raw_input().split())
+			cmd=inp[0]
+			if len(inp)>1:
+				val=inp[1]
+				cpy=val
+			if cmd=="pwd":
+				df="/"+'/'.join(d_r)
+				if len(d_r):
+					print df+"/"
+				else:
+					print df	
+			elif cmd=="cd":
+				val=val.split("/")
+				f=cpy.find("/")
+				if not f:
+					d_r=list()
+				for v in val:
+					if v!='':
+						if v=="..":
+							if len(d_r):
+								if not(d_r[-1]=="/" and len(d_r)==1):
+									d_r.pop()
+						else:
+							d_r.append(v)
+																	
+			n-=1
+				
+		t-=1
+		
+	
+	
+if __name__=="__main__":
+    main()
