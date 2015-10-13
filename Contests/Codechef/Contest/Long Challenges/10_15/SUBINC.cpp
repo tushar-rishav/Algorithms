@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -78,10 +75,33 @@ using namespace std;
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+
+	ll t,n,temp,nc,s=1,count=0;
+	vll a;
+	csf(t);
+	wl(t){
+		csf(n);
+		nc = n;
+		wl(nc){
+			csf(temp);
+			a.pub(temp);
+		}
+		ll s = 1,count=0;
+		rep(i,n){
+			if(n==1){
+				cpfn(1);
+			}
+			else if(a[i]<=a[i+1] && (i < n-1) )
+				s++;
+			else{
+				count += s*(s+1)/2;
+				s=1;
+			}
+		}
+		if(n>1)
+			cpfn(count);
+		a.clear();
+
+	}
 	return 0;
 }

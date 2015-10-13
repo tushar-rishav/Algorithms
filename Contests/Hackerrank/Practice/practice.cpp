@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -75,13 +72,20 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll t,a,b,count;
+	csf(t);
+	wl(t){
+		sf(a);
+		sf(b);
+		count = floor(sqrt(b))-ceil(sqrt(a))+1;
+		pfn(count);
+	}
+
+
+
 	return 0;
 }

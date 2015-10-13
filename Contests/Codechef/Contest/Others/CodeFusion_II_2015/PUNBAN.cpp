@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -75,13 +72,70 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+bool primes[100001];
+
+void sieve(ll n){
+	rep(i,n+1)
+		primes[i] = true;
+	primes[0] = false;
+	primes[1] = false;
+	for(ll i = 2; i * i <= n; ++i){
+         if(primes[i]) {
+             for(ll j = i * i; j <= n ;j += i)
+                 primes[j] = false;
+        }
+    }
+	
+}
+
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll t,n,sm,tm,i,nc;
+	vll pos;
+	csf(t);
+	sieve(100000);
+	wl(t){
+		sm = 0;
+		tm = 0;
+		i = 0;
+		csf(n);
+		nc = n;
+		
+		if(primes[n])
+			n-=1;
+
+		while(2*sm <= n){
+			tm+=2;
+			i++;
+			sm+=i;
+		}
+
+		if(2*sm - i == n){
+			tm = tm - 1;
+		}
+		else if(2*sm > n){
+			while(2*sm  > n && ((2*sm-n)%i!=0) ) {
+				sm -= i;
+				tm -= 2;
+				i-=1;
+			}
+			while( 2*sm < n && ((n-2*sm)%i!=0)){
+				sm -= i;
+				tm -= 2;
+				i-=1;	
+			}
+
+				tm += (n-(2*sm))/i;
+
+			
+		}
+		if(primes[nc])
+			tm+=1;
+
+		cpfn(tm);
+		pos.clear();
+		
+	}
 	return 0;
 }

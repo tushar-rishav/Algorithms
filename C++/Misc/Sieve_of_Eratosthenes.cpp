@@ -1,6 +1,8 @@
 /*
-	100%
+	Compute all prime numbers smaller than or equal to a given number N.
+	Time Complexity : O(Nlog(log N))
 */
+
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -75,13 +77,31 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+map < ll, bool> sieve(ll n){
+	map < ll, bool> primes;	// search is efficient in set as compared to vectors
+	rep(i,n+1)
+		primes[i] = true;
+	primes[0] = false;
+	primes[1] = false;
+	for(ll i = 2; i * i <= n; ++i){
+         if(primes[i]) {
+             for(ll j = i * i; j <= n ;j += i)	// Mark all the multiples of i as composite numbers
+                 primes[j] = false;
+        }
+    }
+	return primes;
+
+}
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll n;
+	cpf("Enter the number upto which prime number is required");
+	csf(n);
+	map < ll, bool> primes = sieve(n);
+	tr(primes,it){
+		if(it->se)
+			cpf(it->fs);
+	}
 	return 0;
 }

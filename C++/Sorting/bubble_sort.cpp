@@ -85,9 +85,15 @@ vll bubble_sort(vll A){
 int main()
 {  
 	sync_false;
-	vll v(10);
-	v[0]=23;
-	v[4]=7;
+	vll v;
+	ll n,temp;
+	cpf("Enter the size of vector");
+	csf(n);
+	cpf("Enter th elements");
+	wl(n){
+		csf(temp);
+		v.pub(temp);
+	}
 	v = bubble_sort(v);
 	tr(v,it){
 		cout<<*it<<" ";

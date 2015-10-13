@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -75,13 +72,20 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+ll box(ll x){
+	if(x<3)
+		return 1;
+	if(x&1)
+		return 1 + box((x-1)>>1);
+	else
+		return box(x>>1);
+}
+
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll x;
+	csf(x);
+	cpf(box(x));
 	return 0;
 }

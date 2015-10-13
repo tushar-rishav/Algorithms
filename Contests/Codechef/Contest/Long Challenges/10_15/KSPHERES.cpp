@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -43,6 +40,7 @@ typedef double db;
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)
 # define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
+# define rtr(container, it) for(typeof(container.rbg()) it = container.rbg(); it != container.ren(); it++) 
 # define present(container, element) (container.find(element) != container.en()) // O(logN) : use in case of Set and Maps
 # define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N) 
 
@@ -75,13 +73,67 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+ll umap[SEGMENT_MAX]={0},lmap[SEGMENT_MAX]={0},prod[SEGMENT_MAX]={0};
+vll u,l,sum;
+sll filter;	// filter common between the two
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+
+	ll n,nc,m,mc,c,temp;
+	
+	csf(n);
+	csf(m);
+	csf(c);
+
+	wl(n){
+		csf(temp);
+		u.pub(temp);
+		umap[temp]++;
+	}
+	wl(m){
+		csf(temp);
+		l.pub(temp);
+		lmap[temp]++;
+	}
+	sll upper_set(all(u));
+	sll lower_set(all(l));
+	
+	ll temp_sum=0,prod_size=0;
+	
+	set_intersection(upper_set.bg(),upper_set.en(),lower_set.bg(),lower_set.en(),std::inserter(filter,filter.bg()));
+	vll uc(all(filter));
+	rtr(uc,it){
+		prod[*it] = umap[*it] * lmap[*it];
+		temp_sum += prod[*it];
+		sum.pub(temp_sum);
+		prod_size++;
+	}
+	
+	ll k =0;
+	rep(i,c){
+		k = 0;
+		repk(j,i+1,prod_size){
+			
+			if(k>0)
+				sum[k] = ((prod[ uc[prod_size-j-1] ]%MOD * sum[k]%MOD)%MOD + sum[k-1]%MOD )%MOD  ;	// one to one mapping btwn prod and uc
+			else
+				sum[k] = (prod[ uc[prod_size-j-1] ]%MOD * sum[k]%MOD)%MOD;
+			
+			k++;
+		}
+		
+	}
+	k = 0;
+	rtr(sum,it){
+		if(k)
+			cpf(*it);
+		k++;
+	}
+	repk(i,k-1,c){
+		cpf(0);
+	}
+
+
 	return 0;
 }

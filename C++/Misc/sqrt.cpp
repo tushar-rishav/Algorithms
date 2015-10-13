@@ -1,6 +1,7 @@
 /*
-	100%
+	Calculate sqrt(N) in O(log(N)) using binary search
 */
+
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -74,14 +75,30 @@ const unsigned char option7 = 0x40; // hex for 0100 0000
 const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
+inline float sqrt(ll n) {
+    float low = 0.0,mid;
+    float high = (float)n+1;
+    while((high-low) > 0.00001){
+        mid = (low+high) / 2;
+        if (mid*mid < n) {
+            low = mid;
+        }
+        else {
+            high = mid;
+        }
+    }
+    if(abs(low-round(low))<=0.00001)
+    	return round(low);
+    else
+    	return low;
+}
 
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll n;
+	cpf("Enter number to find sqrt");
+	csf(n);
+	cout<<sqrt(n);
 	return 0;
 }

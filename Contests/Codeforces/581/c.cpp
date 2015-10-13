@@ -1,5 +1,5 @@
 /*
-	100%
+	Partial correct
 */
 #include <bits/stdc++.h>
 typedef long long ll;
@@ -74,14 +74,52 @@ const unsigned char option7 = 0x40; // hex for 0100 0000
 const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
-
+bool myfunction (pll i,pll j) { return (i.se < j.se); }
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+
+	ll n,k,nc,temp;
+	double fn;
+	vll a;
+	csf(n);
+	nc=n;
+	csf(k);
+	ll index = 0;
+	pair< ll, double > near_pair; 
+	vector< pair< ll, double > > near;
+	wl(n){
+		csf(temp);
+		a.pub(temp);
+		
+		fn = ceil((float)temp/10) - (float)temp/10 ;
+		near_pair.fs = index;
+		near_pair.se = fn;
+		near.pub(near_pair);
+		index++;
+		
+		
+	}
+	sort(all(near),myfunction);
+	ll t = 0;
+	tr(near,it){
+		if(k){
+			if(it->se){
+			t = 10 - a[it->fs]%10;
+			if( (k-t) >= 0 and t > 0 ){
+				a[it->fs]+=t;
+			}
+			k-=t;
+		}
+
+		}
+	}
+	ll sm = 0;
+	tr(a,it){
+		sm+=(*it/10);
+	}
+	cpf(sm);
+
+
 	return 0;
 }

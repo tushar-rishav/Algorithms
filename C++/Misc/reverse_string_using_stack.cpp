@@ -1,3 +1,6 @@
+/*
+	Simple implementation of Stack
+*/
 #include <bits/stdc++.h>
 #define DEBUG(x) cout << '>' << #x << ':' << x << endl;
 using namespace std;

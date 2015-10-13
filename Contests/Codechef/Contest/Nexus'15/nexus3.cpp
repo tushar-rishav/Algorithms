@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -78,10 +75,56 @@ using namespace std;
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll n,nc,k,temp,q,s,x;
+	vll a, asum;
+	csf(n);
+	nc = n;
+	csf(k);
+	wl(nc){
+		csf(temp);
+		a.pub(temp);
+	}
+	ll temp_sum = 0;
+
+	rep(i,k){
+		temp_sum += a[i];	// first subarray sum
+	}
+	asum.pub(temp_sum);	// first push
+	
+	repk(i,1,n-k+1){
+		temp_sum = temp_sum + a[k+i-1] - a[i-1];	// efficient sum
+		asum.pub(temp_sum);
+	}
+	ll asum_size = n-k+1;
+	csf(q);
+	wl(q){
+		temp_sum = 0;
+		csf(s);
+		csf(x);
+		rep(i,s){
+			temp_sum += asum[i];	// first subarray sum
+		}
+		if(temp_sum==x){
+			cpfn("YES");
+			continue;
+		}
+		else{
+			bool flag = false;
+			repk(i,1,asum_size-s+1){
+				temp_sum = temp_sum + asum[s+i-1] - asum[i-1];	// efficient sum
+				if(temp_sum==x){
+					cpfn("YES");
+					flag=true;
+					break;
+				}
+			}
+			if(!flag){
+				cpfn("NO");
+			}
+
+		}
+
+	}
+
 	return 0;
 }

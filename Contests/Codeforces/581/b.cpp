@@ -1,3 +1,6 @@
+/*
+	100%
+*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;

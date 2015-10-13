@@ -1,5 +1,6 @@
 /*
-	100%
+	check if a given number is prime.
+	Complexity: O(0.5sqrt(N))
 */
 #include <bits/stdc++.h>
 typedef long long ll;
@@ -75,13 +76,27 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-int main()
-{  
+bool isPrime(ll n){
+	if(n<=1 || n==2)
+		return false;
+   	if(!(n&1))
+   		return false;
+	ll m = floor(sqrt(n));	// optimisation
+
+   for(ll i=3; i<=m; i+=2)	// additional optimisation
+      if (n%i==0)
+         return false;
+
+   return true;
+}
+
+int main(){  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll n;
+	csf(n);
+	if(isPrime(n))
+		cpf("YES");
+	else
+		cpf("NO");
 	return 0;
 }

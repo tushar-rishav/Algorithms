@@ -1,5 +1,5 @@
 /*
-	100%
+	Given a string. Find all the possible permutation of the string
 */
 #include <bits/stdc++.h>
 typedef long long ll;
@@ -78,10 +78,19 @@ using namespace std;
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	vll v;
+	string s = "abcd",temp_string;
+	ll n = s.size();
+	rep(i,n){
+		v.pub(i);
+	}
+	do{
+		temp_string = "";
+		tr(v,it)
+			temp_string+=s[*it];
+		cpf(temp_string);
+		cpf("\n");
+	}while(next_permutation(all(v)));
+	
 	return 0;
 }

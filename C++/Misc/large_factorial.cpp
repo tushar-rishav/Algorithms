@@ -1,5 +1,7 @@
 /*
-	100%
+    Calculate factorial of a large number (>20)
+    NOTE: (20+)! can't be stored in even long long in C++
+    We've used vectors to store the numbers
 */
 #include <bits/stdc++.h>
 typedef long long ll;
@@ -77,11 +79,28 @@ using namespace std;
 
 int main()
 {  
-	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
-	return 0;
+    sync_false;
+    vll number(300,0);
+    ll val,carry=0;
+    csf(val);
+    number[0]=1; //Initial product = 1
+    ll k=0; //Current size of the number stored in 'number'
+
+
+     REP(i,val){
+        rep(j,k+1){
+            number[j]=number[j]*i+carry;
+            carry=number[j]/10;
+            number[j]=number[j]%10;
+        }
+        while(carry){   //Propogate the remaining carry to higher order digits
+            k++;
+            number[k]=carry%10;
+            carry/=10;
+        }   
+     }
+     for(int i=k;i>=0;i--)
+            cout<<number[i];
+    cpf("\n");
+    return 0;
 }

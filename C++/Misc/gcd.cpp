@@ -1,6 +1,7 @@
 /*
 	Find the GCD of two given numbers with recursive approach.
 	NOTE: gcd(a,b) = gcd(b%a, a)
+	lcm(a,b) = (a*b)/gcd(a,b);
 */
 #include <bits/stdc++.h>
 #define DEBUG(x) cout << '>' << #x << ':' << x << endl;

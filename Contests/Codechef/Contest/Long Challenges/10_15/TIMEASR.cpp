@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -47,13 +44,13 @@ typedef double db;
 # define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N) 
 
 
-# define rep(i, n) for( ll (i) = 0; (i) < (n); (i)++)
-# define repk(i,k,n) for( ll (i) = k; (i) < (n); (i)++)
-# define REP(i, n) for( ll (i) = 1; (i) <= (n); (i)++)
+# define rep(i, n) for( int (i) = 0; (i) < (n); (i)++)
+# define repk(i,k,n) for( int (i) = k; (i) < (n); (i)++)
+# define REP(i, n) for( int (i) = 1; (i) <= (n); (i)++)
 # define wl(i) while((i)--)
-# define sf(i) scanf("%lld",&(i))
-# define pf(i) printf("%lld ",(i))
-# define pfn(i) printf("%lld\n",(i))
+# define sf(i) scanf("%d",&(i))
+# define pf(i) printf("%d ",(i))
+# define pfn(i) printf("%d\n",(i))
 # define csf(i) cin>>(i)
 # define cpf(i) cout<<(i)<<" "
 # define cpfn(i) cout<<(i)<<endl
@@ -78,10 +75,31 @@ using namespace std;
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll t;
+	float A,diff;
+	csf(t);
+	
+	wl(t){
+		csf(A);
+		rep(h,12){
+			rep(m,60){
+				diff = abs( 30*h - (float)(11*m)/2 );
+				if( abs(diff-A)< (float)1/120 || abs(360-diff-A) < (float)1/120 ){
+					if(h<10 && m<10)
+						printf("%d%d:%d%d\n", 0,h,0,m);
+
+					else if(m>=10 && h<10)
+						printf("%d%d:%d\n", 0,h,m);
+					
+					else if(h>=10 && m<10)
+						printf("%d:%d%d\n",h,0,m);
+					
+					else
+						printf("%d:%d\n", h,m);
+				}
+			}
+		}
+
+	}
 	return 0;
 }

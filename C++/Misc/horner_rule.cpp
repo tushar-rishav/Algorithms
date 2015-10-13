@@ -1,5 +1,6 @@
 /*
-	100%
+	Computing the value of a polynomial	given its coefficient.
+	P(x) = A0 + A1x + A2x^2 + A3x^3 + ...An-1x^n-1 + Anx^n
 */
 #include <bits/stdc++.h>
 typedef long long ll;
@@ -75,13 +76,30 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+ll compute(vll coff, ll deg,ll x, ll n = 0){
+	if(n==deg)
+		return coff[n];
+	return coff[n] + x*( compute(coff, deg, x, n+1 ));
+
+}
+
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	vll coff;
+	ll deg,n,c,x;
+	cpf("");
+	cpf("Enter the degree of polynomial:");
+	csf(deg);
+	n = deg+1;
+	wl(n){
+		cout<<"Enter A"<< deg-n<<" ";
+		csf(c);
+		coff.pub(c);
+
+	}
+	cpf("Enter the value of x :");
+	csf(x);
+	cout <<"P(" << x <<") is "<< compute(coff,deg,x);
 	return 0;
 }

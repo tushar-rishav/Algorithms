@@ -1,6 +1,5 @@
-/*
-	100%
-*/
+/*   Boring stuffs! */
+
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -74,14 +73,36 @@ const unsigned char option7 = 0x40; // hex for 0100 0000
 const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
+ll b = 0;
+ll expo(ll a,ll n){
+	if(!n)
+		return 1;
+	if(n == 1)
+		return a;
+	ll e = expo(a,n/2);
+	return (n & 1)? (((a%b*e%b)%b)*e%b)%b :(e%b*e%b)%b;
+	
+}	
 
 int main()
 {  
 	sync_false;
-	ll a,b;
+
+	ll a,sz,sm=0;
 	csf(a);
 	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	string s;
+	csf(s);
+	sz = s.size();
+	rep(i,sz){
+		if(s[i]-'0'){
+			sm += a;
+			sm%=b;
+		}
+	a = (a*a)%b;
+	}
+	cpfn(sm);
+
+
 	return 0;
 }

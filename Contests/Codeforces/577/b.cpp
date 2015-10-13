@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -74,14 +71,52 @@ const unsigned char option7 = 0x40; // hex for 0100 0000
 const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
+bool subset( vll &A , ll n,ll m){
+	vll temp;
+	rep(i,(1<<n)){
+		rep(j,n){
+			if(i & (1<<j) )			
+				temp.pub(A[j]);	
+		}
+		ll sm = 0;
+		tr(temp,it){
+			//cpf(*it);
+			sm+=*it;
+		}
+		// cpf("\n");
+		// cpf(sm);
+
+		if(sm%m==0 && !(temp.empty()) ){
+			return 1;
+		}
+		temp.clear();
+	}
+	
+	return 0;
+
+
+}
 
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	ll n,m,temp;
+	csf(n);
+	csf(m);
+	ll nc=n;
+	vll v;
+	wl(n){
+		csf(temp);
+		v.pub(temp);
+	}
+	if(nc>1){
+		if(subset(v,nc,m))
+			cpf("YES");
+		else
+			cpf("NO");
+	}
+	else{
+		v[0] % m==0 ? cpf("YES"):cpf("NO");
+	}
 	return 0;
 }

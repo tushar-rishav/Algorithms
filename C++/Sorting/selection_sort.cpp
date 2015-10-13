@@ -88,10 +88,15 @@ vll selection_sort(vll A){
 int main()
 {  
 	sync_false;
-	vll A(10,1);
-	A[0]=4;
-	A[1]=3;
-	A[4]=-4;
+	vll v;
+	ll n,temp;
+	cpf("Enter the size of vector");
+	csf(n);
+	cpf("Enter th elements");
+	wl(n){
+		csf(temp);
+		v.pub(temp);
+	}
 	A = selection_sort(A);
 	tr(A,it)
 		cout<<*it<<" ";

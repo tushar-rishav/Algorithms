@@ -1,6 +1,3 @@
-/*
-	100%
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -75,13 +72,66 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+void merge(vll &L, vll &R, vll &A){
+	ll i=0,j=0,k=0,iL,jL;
+	iL = L.size();
+	jL = R.size();
+	while(i<iL && j<jL ){
+		if(L[i]<=R[j]){
+			A[k] = L[i];
+			i++;
+		}
+		else if(R[j]<=L[i]){
+			A[k] = R[j];
+			j++;
+		}
+		k++;
+	}
+	while(i<iL){
+			A[k] = L[i];
+			i++;
+			k++;
+	}
+	
+	while(j<jL){
+			A[k] = R[j];
+			j++;
+			k++;
+	}
+	
+	return;
+}
+vll merge_sort(vll S){
+	vll tempL,tempR;
+	ll len = S.size();
+	if(len < 2 )
+		return S;	// array is already sorted. Base case
+	rep(i,len/2)
+		tempL.pub(S[i]);
+	repk(i,len/2,len)
+		tempR.pub(S[i]);
+	tempL = merge_sort(tempL);
+	tempR = merge_sort(tempR);
+	merge(tempL,tempR,S);
+	return S;
+
+}
+
 int main()
 {  
 	sync_false;
-	ll a,b;
-	csf(a);
-	csf(b);
-	cout<< min(a,b)<<" "<<((max(a,b)-min(a,b))>>1);
-	cout<<endl;
+	vll v;
+	ll n,temp;
+	cpf("Enter the size of vector");
+	csf(n);
+	cpf("Enter th elements");
+	wl(n){
+		csf(temp);
+		v.pub(temp);
+	}
+	v = merge_sort(v);
+	tr(v,it){
+		cout<<*it<<" ";
+	}
 	return 0;
 }
