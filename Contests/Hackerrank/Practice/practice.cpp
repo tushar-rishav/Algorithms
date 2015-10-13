@@ -76,13 +76,23 @@ using namespace std;
 int main()
 {  
 	sync_false;
-	ll t,a,b,count;
-	csf(t);
-	wl(t){
-		sf(a);
-		sf(b);
-		count = floor(sqrt(b))-ceil(sqrt(a))+1;
-		pfn(count);
+	ll n,temp,nc;
+	vll a;
+	int cmap[1000]={0};
+	csf(n);
+	nc = n;
+	wl(n){
+		csf(temp);
+		cmap[temp]++;
+		a.pub(temp);
+	}
+	ll i = 0,count=0;
+	srt(a);
+	tr(a,it){
+		count = nc - i;
+		cpfn(count);
+		i += cmap[*it];
+		it += cmap[*it]-1;
 	}
 
 

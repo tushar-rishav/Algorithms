@@ -1,5 +1,5 @@
 from sys import stdin,exit
-
+ 
 def main():
 	t=input()
 	while t:
@@ -12,12 +12,8 @@ def main():
 				s_mem+=m[i+1]-m[i]
 			i+=1
 		print s_mem
-
+ 
 		t-=1
 	exit(0)
 if __name__=="__main__":
 	main()
-
-
-
-

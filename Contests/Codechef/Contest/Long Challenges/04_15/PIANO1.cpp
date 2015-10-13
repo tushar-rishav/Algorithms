@@ -1,8 +1,8 @@
 #include <stdio.h>
-
+ 
 char scale[100];
 int  main(){
-
+ 
 	long t;
 	long long n,dummy,x,ways;
 	char ch;
@@ -38,7 +38,8 @@ int  main(){
 	printf("%lld\n",ways);	
 	
 }	
-
-
+ 
+ 
 	return 0;
 }
+ 
