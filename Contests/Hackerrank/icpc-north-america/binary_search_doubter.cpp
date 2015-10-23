@@ -1,3 +1,6 @@
+/*
+  AC
+*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -39,7 +42,7 @@ typedef double db;
 # define srt(v) sort( v.bg(), v.en() )
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)
-# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
+# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++)
 # define rtr(container, it) for(typeof(container.rbg()) it = container.rbg(); it != container.ren(); it++) 
 # define present(container, element) (container.find(element) != container.en()) // O(logN) : use in case of Set and Maps
 # define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N) 
@@ -59,7 +62,7 @@ typedef double db;
 
 # define MAX_PRIME 0
 # define SEGMENT_MAX 100005
-# define MOD 1000003
+# define MOD 1000000007
 # define sync_false std::ios_base::sync_with_stdio(false)
 
 const unsigned char option1 = 0x01; // hex for 0000 0001
@@ -74,34 +77,32 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 using namespace std;
 
 
-int main()
-{  
-	sync_false;
-	ll t,n,l,r,limit,tsum=0;
+int main(){  
+  sync_false;
+  ll n,ncase=0,p,ans;
+  ll Sn,S,po;
+  while(sf(n)!=EOF){
+    ans = 0;
+    ncase++;
+    nc = n;
+    p = floor(log2(n+1));
+    //DEBUG(p)
+    po = pow(2,p);
+    Sn = po-1;
+    //DEBUG(Sn)
+    S = po*(p-1)+1;
+    //DEBUG(S)
+    if(Sn == n){
+      ans = S;
+    }
+    else{
+      ans = S + (p + 1) * (n-Sn);
+    }
 
-	vll ar;
-	csf(t);
-	wl(t){
-		tsum = 0;
-		csf(n);csf(l);csf(r);
-		limit = r-l+1;
-		REP(i,limit){
-			tsum +=1;
-			ar.pub(tsum);
-		}
-		tsum = 0;
-		rep(i,n){
-			tsum = (tsum % MOD + ar[limit-i-1] % MOD)%MOD;
-			REP(j,limit-i-1)
-				ar[j] = (ar[j]%MOD + ar[j-1]%MOD)%MOD;
+    printf("Case %lld: %lld\n",ncase,ans);
 
-		}
-		cpfn(tsum);
-		ar.clear();
+    
+  }
 
-	}
-
-
-
-	return 0;
+  return 0; 
 }

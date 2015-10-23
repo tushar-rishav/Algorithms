@@ -39,7 +39,7 @@ typedef double db;
 # define srt(v) sort( v.bg(), v.en() )
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)
-# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
+# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++)
 # define rtr(container, it) for(typeof(container.rbg()) it = container.rbg(); it != container.ren(); it++) 
 # define present(container, element) (container.find(element) != container.en()) // O(logN) : use in case of Set and Maps
 # define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N) 
@@ -59,7 +59,7 @@ typedef double db;
 
 # define MAX_PRIME 0
 # define SEGMENT_MAX 100005
-# define MOD 1000003
+# define MOD 1000000007
 # define sync_false std::ios_base::sync_with_stdio(false)
 
 const unsigned char option1 = 0x01; // hex for 0000 0001
@@ -72,36 +72,57 @@ const unsigned char option7 = 0x40; // hex for 0100 0000
 const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
-
-
+inline ll factorial(ll n){
+	if(n<3)
+		return n;
+	else
+		return n * factorial(n-1);
+}
 int main()
 {  
 	sync_false;
-	ll t,n,l,r,limit,tsum=0;
-
-	vll ar;
-	csf(t);
-	wl(t){
-		tsum = 0;
-		csf(n);csf(l);csf(r);
-		limit = r-l+1;
-		REP(i,limit){
-			tsum +=1;
-			ar.pub(tsum);
+	ll n,temp,nc,s,S,count,Pl,sm,c,fc;
+	bool flag = false;
+	vll fs_se;
+	while(sf(n)!=0){
+		nc = n;
+		S = 0;
+		wl(nc){
+			sf(temp);
+			if(nc > n-3)
+				fs_se.pub(temp);
+			S += temp;
 		}
-		tsum = 0;
-		rep(i,n){
-			tsum = (tsum % MOD + ar[limit-i-1] % MOD)%MOD;
-			REP(j,limit-i-1)
-				ar[j] = (ar[j]%MOD + ar[j-1]%MOD)%MOD;
+		fc = factorial(n);
+		count = 0;
+		Pl = 30/n + 1;
+		rep(i,1<<Pl){
+			sm = 0, c = 0, flag = false;
+			rep(j,Pl){
+
+				if((j & i)&&i){
+					sm += j;
+					c++;
+					if(c > n || sm > S ){
+						flag = true;break;
+					}
+
+				}
+
+			}
+			if(!flag && sm < S){
+				count = count + c * factorial(c);
+			}
+			else if(sm == S){
+				
+			}
+
 
 		}
-		cpfn(tsum);
-		ar.clear();
+
+	
+
 
 	}
-
-
-
 	return 0;
 }

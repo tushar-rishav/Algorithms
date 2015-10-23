@@ -39,7 +39,7 @@ typedef double db;
 # define srt(v) sort( v.bg(), v.en() )
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)
-# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
+# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++)
 # define rtr(container, it) for(typeof(container.rbg()) it = container.rbg(); it != container.ren(); it++) 
 # define present(container, element) (container.find(element) != container.en()) // O(logN) : use in case of Set and Maps
 # define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N) 
@@ -59,7 +59,7 @@ typedef double db;
 
 # define MAX_PRIME 0
 # define SEGMENT_MAX 100005
-# define MOD 1000003
+# define MOD 1000000007
 # define sync_false std::ios_base::sync_with_stdio(false)
 
 const unsigned char option1 = 0x01; // hex for 0000 0001
@@ -73,35 +73,41 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-
 int main()
 {  
 	sync_false;
-	ll t,n,l,r,limit,tsum=0;
-
-	vll ar;
-	csf(t);
-	wl(t){
-		tsum = 0;
-		csf(n);csf(l);csf(r);
-		limit = r-l+1;
-		REP(i,limit){
-			tsum +=1;
-			ar.pub(tsum);
+	ll n,b,x,y,ncase=0;
+	float ans,vol,e = 0.000001,l;
+	pll x_y;
+	vector <pll> cord; 
+	while(sf(n)!=EOF){
+		ncase++;
+		sf(b);
+		scanf("%f",&l);
+		wl(n){
+			sf(x);
+			sf(y);
+			x_y.fs = x;
+			x_y.se = y;
+			cord.pub(x_y);
 		}
-		tsum = 0;
-		rep(i,n){
-			tsum = (tsum % MOD + ar[limit-i-1] % MOD)%MOD;
-			REP(j,limit-i-1)
-				ar[j] = (ar[j]%MOD + ar[j-1]%MOD)%MOD;
 
-		}
-		cpfn(tsum);
-		ar.clear();
+		vol = (float)b * ( abs(cord[0].se-cord[4].se)*abs(cord[5].fs-cord[2].fs) - 	
+					0.5 * ( abs(cord[5].fs-cord[4].fs)*abs(cord[5].se-cord[4].se) + 
+							abs(cord[5].fs-cord[0].fs)*abs(cord[5].se-cord[0].se) +
+						  	abs(cord[2].se-cord[3].fs)*abs(cord[2].se-cord[3].se) +
+						  	abs(cord[1].se-cord[2].fs)*abs(cord[1].se-cord[2].se)
+						  )
+   				  )/1000;
+		cpfn(vol);
+		if(l-vol>e)
+			ans = (float)b;
+		else
+			ans = (float)(l*b)/vol;
+		
 
+		printf("Case %lld: %4f\n",ncase,ans);
+		cord.clear();
 	}
-
-
-
 	return 0;
 }
