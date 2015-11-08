@@ -133,10 +133,8 @@ void dfs_recursive(ll s){
 	visited_r[s] = true;
 	cpf(nodes[s].data);
 	tr(adj_list[s],it){	// adj_list[s] gives all the adjacent nodes of s
-		if(!visited_r[*it]){
-			visited_r[*it] = true;
+		if(!visited_r[*it])
 			dfs_recursive(*it);
-		}
 	}
 
 }

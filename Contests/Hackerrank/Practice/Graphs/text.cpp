@@ -1,8 +1,3 @@
-/*
-	Compute all prime numbers smaller than or equal to a given number N.
-	Time Complexity : O(Nlog(log N))
-*/
-
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -44,7 +39,8 @@ typedef double db;
 # define srt(v) sort( v.bg(), v.en() )
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)
-# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
+# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++)
+# define rtr(container, it) for(typeof(container.rbg()) it = container.rbg(); it != container.ren(); it++) 
 # define present(container, element) (container.find(element) != container.en()) // O(logN) : use in case of Set and Maps
 # define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N) 
 
@@ -77,31 +73,23 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-map < ll, bool> sieve(ll n){
-	map < ll, bool> primes;
-	rep(i,n+1)
-		primes[i] = true;
-	primes[0] = false;
-	primes[1] = false;
-	for(ll i = 2; i * i <= n; ++i){
-         if(primes[i]) {
-             for(ll j = i * i; j <= n ;j += i)	// Mark all the multiples of i as composite numbers
-                 primes[j] = false;
-        }
-    }
-	return primes;
-
-}
 int main()
 {  
 	sync_false;
-	ll n;
-	cpf("Enter the number upto which prime number is required");
-	csf(n);
-	map < ll, bool> primes = sieve(n);
-	tr(primes,it){
-		if(it->se)
-			cpf(it->fs);
+	ll m,x,y;
+	map<ll, vll> M;
+	
+	csf(m);
+	wl(m){
+		csf(x);csf(y);
+		M[x].pub(y);
 	}
+	tr(M,it){
+		cpf(it->fs);
+		tr( it->se, i)
+			cpf(*i);
+		cpf("\n");
+	}
+	
 	return 0;
 }

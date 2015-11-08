@@ -1,8 +1,6 @@
 /*
-	Compute all prime numbers smaller than or equal to a given number N.
-	Time Complexity : O(Nlog(log N))
+	Find the shortest distance for all the nodes from a given starting point in an unidirected graph.
 */
-
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -44,7 +42,8 @@ typedef double db;
 # define srt(v) sort( v.bg(), v.en() )
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)
-# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
+# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++)
+# define rtr(container, it) for(typeof(container.rbg()) it = container.rbg(); it != container.ren(); it++) 
 # define present(container, element) (container.find(element) != container.en()) // O(logN) : use in case of Set and Maps
 # define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N) 
 
@@ -77,31 +76,52 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-map < ll, bool> sieve(ll n){
-	map < ll, bool> primes;
-	rep(i,n+1)
-		primes[i] = true;
-	primes[0] = false;
-	primes[1] = false;
-	for(ll i = 2; i * i <= n; ++i){
-         if(primes[i]) {
-             for(ll j = i * i; j <= n ;j += i)	// Mark all the multiples of i as composite numbers
-                 primes[j] = false;
-        }
-    }
-	return primes;
+vll dis;
 
+void bfs(ll s,map<ll, vll> adj_list, ll n){
+	queue <ll> nodes;
+	vector<bool> visit(n+1);
+	ll v, level = 0;
+	nodes.push(s);
+	while(!nodes.empty()){
+		v = nodes.front(); nodes.pop(); visit[v] = true;
+		tr(adj_list[v], it){
+			if(!visit[*it]){
+				visit[*it] = true;
+				nodes.push(*it);
+				dis[*it] = dis[v] + 1;
+			}
+		}
+	}
+	visit.clear();
 }
 int main()
 {  
 	sync_false;
-	ll n;
-	cpf("Enter the number upto which prime number is required");
-	csf(n);
-	map < ll, bool> primes = sieve(n);
-	tr(primes,it){
-		if(it->se)
-			cpf(it->fs);
+	ll t,x,y,n ,m, s;
+	map<ll, vll> adj_list;
+	csf(t);
+	wl(t){
+		csf(n);
+		csf(m);
+		wl(m){
+			csf(x);csf(y);
+			adj_list[x].pub(y);	// create an adj list
+			adj_list[y].pub(x);
+		}
+		csf(s);			// starting point S
+		dis.pub(0);
+		repk(i,1,n+1){
+			i !=s ? dis.pub(-1): dis.pub(0);
+		}
+		bfs(s, adj_list,n);
+		tr(dis, it){
+			if(*it)
+				cpf(*it);	// print shortest distance of nodes from starting point S
+		}
+		cout<<endl;
+		adj_list.clear();
+		dis.clear();
 	}
 	return 0;
 }
