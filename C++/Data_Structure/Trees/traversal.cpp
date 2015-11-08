@@ -7,6 +7,7 @@ using namespace std;
 
 struct node{
 	int data;
+	int key;
 	struct node* left;
 	struct node* right;
 };
@@ -14,6 +15,7 @@ struct node{
 class Tree{
 	private:
 		node* root;
+		int node_count = 0;
 	public:
 		void insert(node**, int);
 		node** get_root();
@@ -21,6 +23,7 @@ class Tree{
 		void preorder(node**);
 		void inorder(node**);
 		void postorder(node**);
+		int search(node**, int);
 
 };
 
@@ -45,8 +48,22 @@ void Tree::insert(node** head, int item)
 		(*head)->data = item;
 		(*head)->left = NULL;
 		(*head)->right = NULL;
+		this->node_count++;
+		(*head)->key = this->node_count;
 		printf("Node inserted with value : %d\n", item);
 	}
+
+}
+int Tree::search(node** head, int key)
+{
+	if(!*(head))
+		return -1;
+	if(key == (*head)->data)
+		return (*head)->key;
+	else if(key > (*head)->data)
+		return (this->search(&((*head)->right),key));
+	else
+		return (this->search(&((*head)->left), key));
 
 }
 void Tree::preorder(node** head)
@@ -96,5 +113,13 @@ int main()
 	cout<<"\tInorder"<<endl;
 	tree.postorder(tree.get_root());
 	cout<<"\tPostorder"<<endl;
+	cout<<"Enter an item to search\t";
+	int n;
+	cin>>n;
+	int pos = tree.search(tree.get_root(),n);
+	if(pos!=-1)
+		cout<<"\nFound at position "<<pos<<endl;
+	else
+		cout<<"\nNot Found\n";
 	return 0;
 }
