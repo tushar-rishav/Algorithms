@@ -1,6 +1,5 @@
 /*
-	Compute all prime numbers smaller than or equal to a given number N.
-	Time Complexity : O(Nlog(log N))
+	generate all the possible combinations of a set
 */
 
 #include <bits/stdc++.h>
@@ -44,7 +43,8 @@ typedef double db;
 # define srt(v) sort( v.bg(), v.en() )
 # define srtr(v) sort( v.rbg(), v.ren())
 # define srtc(v, x) sort( v.bg(), v.en(), x)
-# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++) 
+# define tr(container, it) for(typeof(container.bg()) it = container.bg(); it != container.en(); it++)
+# define rtr(container, it) for(typeof(container.rbg()) it = container.rbg(); it != container.ren(); it++) 
 # define present(container, element) (container.find(element) != container.en()) // O(logN) : use in case of Set and Maps
 # define cpresent(container, element) (find(all(container),element) != container.en()) // global find(): for Vectors. O(N) 
 
@@ -77,31 +77,50 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-map < ll, bool> sieve(ll n){
-	map < ll, bool> primes;
-	rep(i,n+1)
-		primes[i] = true;
-	primes[0] = false;
-	primes[1] = false;
-	for(ll i = 2; i * i <= n; ++i){
-         if(primes[i]) {
-             for(ll j = i * i; j <= n ;j += i)	// Mark all the multiples of i as composite numbers
-                 primes[j] = false;
-        }
-    }
-	return primes;
+vll B;
+ll N;	// no of elements in given set
+
+void print(vll &A)
+{
+	ll sum  = 0;
+	REP(i,N){
+		if(A[i]==1){
+			cout<<B[i]<<" ";
+			sum++;
+		}
+	}
+	cout<<endl;
+
+}
+void subset(vll &A,ll k)
+{
+	if(k==N){
+		A[k] = 0;
+		print(A);
+		A[k] = 1;
+		print(A);
+		return;
+	}
+	A[k] = 0;
+	subset(A,k+1);
+	A[k] = 1;
+	subset(A,k+1);
 
 }
 int main()
 {  
 	sync_false;
-	ll n;
-	cpf("Enter the number upto which prime number is required(< 100000)");
-	csf(n);
-	map < ll, bool> primes = sieve(n);
-	tr(primes,it){
-		if(it->se)
-			cpf(it->fs);
+	ll temp;
+	cpf("Enter the count of elements in set:\t");
+	csf(N);
+	cpfn("Enter the elements of set:");
+	B.pub(INT_MAX);
+	rep(i, N){
+		csf(temp);
+		B.pub(temp);
 	}
+	vll A(N+1,0);
+	subset(A,1);
+
 	return 0;
 }

@@ -102,8 +102,8 @@ int main()
 	map<ll, vll> adj_list;
 	csf(t);
 	wl(t){
-		csf(n);
-		csf(m);
+		csf(n);		// no. of vertices
+		csf(m);		// no. of edges
 		wl(m){
 			csf(x);csf(y);
 			adj_list[x].pub(y);	// create an adj list
