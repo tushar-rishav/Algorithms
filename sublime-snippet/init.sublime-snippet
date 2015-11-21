@@ -75,6 +75,18 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+inline void Scan_f(long long *a)
+{
+	char c = 0;
+	while(c<33)
+		c = fgetc_unlocked(stdin);
+	*a = 0;
+	while(c>33){
+		*a = (*a)*10 + c - '0';
+		c = fgetc_unlocked(stdin);
+	}
+}
+
 int main()
 {  
 	sync_false;
