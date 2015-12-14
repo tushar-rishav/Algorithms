@@ -1,6 +1,3 @@
-/*
-	Recursive and Iterative implementation of Depth First Search for Graphs
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -75,111 +72,59 @@ const unsigned char option7 = 0x40; // hex for 0100 0000
 const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
+map < ll, bool> primes;
 
-struct node{
-	ll data;
-	ll pos;
-};
-vector< node > nodes;
-bool visited_r[100] = {false};
-bool visited_i[100] = {false};
-vvll adj_list(100);	// Space complexity O(nodes + edges)
-ll nod;
+inline void Scan_f(long long *a)
+{
+	char c = 0;
+	while(c<33)
+		c = fgetc_unlocked(stdin);
+	*a = 0;
+	while(c>33){
+		*a = (*a)*10 + c - '0';
+		c = fgetc_unlocked(stdin);
+	}
+}
 
-void dfs_recursive(ll);
-void dfs_iterative(ll);	
-void print_graph();
+void sieve(void)
+{
+	rep(i,32001)	// sqrt 1000000000 = ~32000
+		primes[i] = true;
+	primes[0] = false;
+	primes[1] = false;
+	for(ll i = 2; i * i <= 32000; ++i){
+         if(primes[i]) {
+             for(ll j = i * i; j <= 32000 ;j += i)	// Mark all the multiples of i as composite numbers
+                 primes[j] = false;
+        }
+    }
 
+}
 int main()
 {  
 	sync_false;
-	ll edges,ec,x,y,nc;
-	
-	csf(nod);
-	csf(edges);
-	
-	node n;
-	nc = nod;
-	
-	n.data = 0;
-	n.pos = 0;
-	nodes.pub(n);	// start counting from 1 by keeping garbage value at 0. Just for convenience
-	cpfn("Provide node position,data");
-	wl(nc){
-		csf(x);csf(y);	// index,data
-		n.data = y;
-		n.pos = x;
-		nodes.pub(n);
-	}
-	cpfn("Provide adjacent nodes for each node");
-	ec = edges;
-	wl(ec){
-		csf(x);csf(y);
-		adj_list[x].pub(y);
-	}
-
-	print_graph();
-	cpfn("Iterative approach..");
-	dfs_iterative();
-	cpfn("\nRecursive approach..");
-	dfs_recursive(1);
-	/*
-		NOTE: each dfs traversal counts one connected components. 
-		So in a graph of N dfs means N connected components total
-	*/
-
-	return 0;
-}
-void dfs_recursive(ll s)
-{
-	visited_r[s] = true;
-	cpf(nodes[s].data);
-	tr(adj_list[s],it){	// adj_list[s] gives all the adjacent nodes of s
-		if(!visited_r[*it])
-			dfs_recursive(*it);
-	}
-
-}
-
-void dfs_iterative(ll s)
-{
-	stack <ll> S;			// S contains list of all unvisited children nodes
-	visited_i[s] = true;
-	S.push(s); ll v;
-	
-	while(!S.empty()){
-		v = S.top();S.pop();
-		cpf(nodes[v].data);	// process the node
-		tr(adj_list[v],it){
-			if(!visited_i[*it]){
-				visited_i[*it] = true;	// push the node and mark it visited
-				S.push(*it);
+	ll t,m,n;
+	bool br;
+	sieve();
+	Scan_f(&t);
+	wl(t){
+		Scan_f(&m);Scan_f(&n);
+		repk(i,max((ll)2,m),n+1){
+			br = false;
+			tr(primes,it){
+				if (it->fs*it->fs > i){
+					break;
+				}else if(it->se){
+					if(i%it->fs==0){
+						br = true;
+						break;
+					}
+				}
 			}
-		}		
-	}
-	
-}
-
-void print_graph()
-{
-	cpfn("The graph is");
-	REP(i,nod){
-		cpf(i);cpf("{");cpf(nodes[i].data);cpf("} ");cpf("->");
-		bool flag = true;
-		tr(adj_list[i],it){
-			if(flag){
-				flag = false;
-			}
-			if(it==adj_list[i].en()-1){
-				cpf(*it);
-				cpf("{");cpf(nodes[*it].data);cpf("} ");
-				cout<<endl;
-			}else{
-				cpf(*it);cpf("{");cpf(nodes[*it].data);cpf("} ");cpf(",");
-			}
+			if(br==false)
+				cpfn(i);
 		}
-		if(flag)
-			cpfn("null");
-		
+		cout<<endl;
 	}
+	return 0;
 }

@@ -63,6 +63,7 @@ typedef double db;
 # define SEGMENT_MAX 100005
 # define MOD 1000000007
 # define sync_false std::ios_base::sync_with_stdio(false)
+# define testcases() ll var;  cin>>var; while(var--)
 
 const unsigned char option1 = 0x01; // hex for 0000 0001
 const unsigned char option2 = 0x02; // hex for 0000 0010

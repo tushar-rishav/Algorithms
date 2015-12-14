@@ -78,7 +78,8 @@ using namespace std;
 
 vll dis;
 
-void bfs(ll s,map<ll, vll> adj_list, ll n){
+void bfs(ll s,map<ll, vll> adj_list, ll n)
+{	// bfs(start, adjlist, total no. of nodes to traverse)
 	queue <ll> nodes;
 	vector<bool> visit(n+1);
 	ll v, level = 0;
