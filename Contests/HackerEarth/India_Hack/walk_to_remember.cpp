@@ -1,6 +1,3 @@
-/*
-	Find the shortest distance for all the nodes from a given starting point in an unidirected graph.
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -76,55 +73,58 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-vll dis;
+map<ll, vll> adj_list;
 
-void bfs(ll s,map<ll, vll> adj_list, ll n)
-{	// bfs(start, adjlist, total no. of nodes to traverse)
-	queue <ll> nodes;
+void dfs(ll n)
+{
+	ll source,start = 1;
+	stack <ll> S;
+	map <ll,ll>Path;		// maps node -> parent
 	vector<bool> visit(n+1);
-	ll v, level = 0;
-	nodes.push(s);
-	while(!nodes.empty()){
-		v = nodes.front(); nodes.pop(); visit[v] = true;
-		cout<<v<<" ";
-		tr(adj_list[v], it){
+	vector<bool>in_cycle(n+1,false);
+	visit[start] = true;
+	S.push(start);
+	Path[start] = 0;	// root node
+	while(!S.empty()){
+		source = S.top();S.pop();
+		//cout<<"#"<<source<<endl;
+		tr(adj_list[source],it){
+			
 			if(!visit[*it]){
+				Path[*it] = source;
 				visit[*it] = true;
-				nodes.push(*it);
-				dis[*it] = dis[v] + 1;
+				S.push(*it);
 			}
-		}
+			else if(!in_cycle[*it]){
+					ll dumb = source;
+					while(dumb != (*it)){
+						in_cycle[dumb] = true;
+						//DEBUG(dumb);
+						dumb = Path[dumb];
+
+					}
+					//DEBUG(*it)
+					//DEBUG(dumb)
+					in_cycle[dumb] = true;
+			}
+
+		}		
 	}
-	visit.clear();
-	cout<<endl;
+	repk(i,1,n+1)
+		in_cycle[i]?printf("1 "):printf("0 ");
+
 }
+
 int main()
 {  
 	sync_false;
-	ll t,x,y,n ,m, s;
-	map<ll, vll> adj_list;
-	csf(t);
-	wl(t){
-		csf(n);		// no. of vertices
-		csf(m);		// no. of edges
-		wl(m){
-			csf(x);csf(y);
-			adj_list[x].pub(y);	// create an adj list
-			adj_list[y].pub(x);
-		}
-		csf(s);			// starting point S
-		dis.pub(0);
-		repk(i,1,n+1){
-			i !=s ? dis.pub(-1): dis.pub(0);
-		}
-		bfs(s, adj_list,n);
-		tr(dis, it){
-			if(*it)
-				cpf(*it);	// print shortest distance of nodes from starting point S
-		}
-		cout<<endl;
-		adj_list.clear();
-		dis.clear();
+	ll nod,edges,x,y;
+	
+	csf(nod);csf(edges);
+	rep(i,edges){
+		csf(x);csf(y);
+		adj_list[x].pub(y);
 	}
+	dfs(nod);
 	return 0;
 }

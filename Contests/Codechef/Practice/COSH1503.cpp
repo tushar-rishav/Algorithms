@@ -1,6 +1,3 @@
-/*
-	Find the shortest distance for all the nodes from a given starting point in an unidirected graph.
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -52,8 +49,8 @@ typedef double db;
 # define repk(i,k,n) for( ll (i) = k; (i) < (n); (i)++)
 # define REP(i, n) for( ll (i) = 1; (i) <= (n); (i)++)
 # define wl(i) while((i)--)
-# define sf(i) scanf("%lld",&(i))
-# define pf(i) printf("%lld ",(i))
+# define sf(i) scanf("%d",&(i))
+# define pf(i) printf("%d\n ",(i))
 # define pfn(i) printf("%lld\n",(i))
 # define csf(i) cin>>(i)
 # define cpf(i) cout<<(i)<<" "
@@ -64,6 +61,7 @@ typedef double db;
 # define SEGMENT_MAX 100005
 # define MOD 1000000007
 # define sync_false std::ios_base::sync_with_stdio(false)
+# define testcases() ll var;  cin>>var;while(var--)
 
 const unsigned char option1 = 0x01; // hex for 0000 0001
 const unsigned char option2 = 0x02; // hex for 0000 0010
@@ -76,55 +74,76 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-vll dis;
 
-void bfs(ll s,map<ll, vll> adj_list, ll n)
-{	// bfs(start, adjlist, total no. of nodes to traverse)
-	queue <ll> nodes;
-	vector<bool> visit(n+1);
-	ll v, level = 0;
-	nodes.push(s);
-	while(!nodes.empty()){
-		v = nodes.front(); nodes.pop(); visit[v] = true;
-		cout<<v<<" ";
-		tr(adj_list[v], it){
-			if(!visit[*it]){
-				visit[*it] = true;
-				nodes.push(*it);
-				dis[*it] = dis[v] + 1;
-			}
-		}
-	}
-	visit.clear();
-	cout<<endl;
+int matrix[100][100] = {0};
+int picks[100][100] = {-1};
+
+int knapsack(int nItems, int size, int weights[], int values[]){
+    int i,j;
+
+    for (i=1;i<=nItems;i++){
+        for (j=0;j<=size;j++){
+            if (weights[i-1]<=j){
+                matrix[i][j] = max(matrix[i-1][j],values[i-1]+matrix[i-1][j-weights[i-1]]);
+                if (values[i-1]+matrix[i-1][j-weights[i-1]]>matrix[i-1][j])
+                    picks[i][j]=1;
+                else
+                    picks[i][j]=-1;
+            }
+            else{
+                picks[i][j] = -1;
+                matrix[i][j] = matrix[i-1][j];
+            }
+        }
+    }
+
+    return matrix[nItems][size];
+
 }
+
+void printPicks(int item, int size, int weights[]){
+
+    while (item>0){
+        if (picks[item][size]==1){
+            printf("%d ",weights[item-1]);
+            item--;
+            size -= weights[item];
+        }
+        else{
+            item--;
+        }
+    }
+
+    printf("\n");
+
+return;
+}
+
+
 int main()
 {  
 	sync_false;
-	ll t,x,y,n ,m, s;
-	map<ll, vll> adj_list;
-	csf(t);
-	wl(t){
-		csf(n);		// no. of vertices
-		csf(m);		// no. of edges
-		wl(m){
-			csf(x);csf(y);
-			adj_list[x].pub(y);	// create an adj list
-			adj_list[y].pub(x);
-		}
-		csf(s);			// starting point S
-		dis.pub(0);
-		repk(i,1,n+1){
-			i !=s ? dis.pub(-1): dis.pub(0);
-		}
-		bfs(s, adj_list,n);
-		tr(dis, it){
-			if(*it)
-				cpf(*it);	// print shortest distance of nodes from starting point S
-		}
-		cout<<endl;
-		adj_list.clear();
-		dis.clear();
-	}
+	
+	int nItems = 6;
+    int knapsackSize = 18;
+    int weights[6] ={2,4,5,6,7,12};
+    int values[6] = {1,1,1,1,1,1};
+
+    printf("Max value = %d\n",knapsack(nItems,knapsackSize,weights,values));
+    printf("Picks were: ");
+    printPicks(nItems,knapsackSize, weights);
+
+
+	// testcases(){
+	// 	cin>>m;
+	// 	int *chips = new int[m];	
+	// 	rep(i,m){
+	// 		cin>>v;
+	// 		chips[i] = v;
+	// 	}
+	// 	//sort(chips, chips+m);	// O(mlogm);
+		
+	// 	printf("%d\n", s);
+	// }
 	return 0;
 }

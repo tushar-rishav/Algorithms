@@ -1,6 +1,3 @@
-/*
-	Find the shortest distance for all the nodes from a given starting point in an unidirected graph.
-*/
 #include <bits/stdc++.h>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -64,6 +61,7 @@ typedef double db;
 # define SEGMENT_MAX 100005
 # define MOD 1000000007
 # define sync_false std::ios_base::sync_with_stdio(false)
+# define testcases() ll var;  cin>>var; while(var--)
 
 const unsigned char option1 = 0x01; // hex for 0000 0001
 const unsigned char option2 = 0x02; // hex for 0000 0010
@@ -76,55 +74,19 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
-vll dis;
-
-void bfs(ll s,map<ll, vll> adj_list, ll n)
-{	// bfs(start, adjlist, total no. of nodes to traverse)
-	queue <ll> nodes;
-	vector<bool> visit(n+1);
-	ll v, level = 0;
-	nodes.push(s);
-	while(!nodes.empty()){
-		v = nodes.front(); nodes.pop(); visit[v] = true;
-		cout<<v<<" ";
-		tr(adj_list[v], it){
-			if(!visit[*it]){
-				visit[*it] = true;
-				nodes.push(*it);
-				dis[*it] = dis[v] + 1;
-			}
-		}
-	}
-	visit.clear();
-	cout<<endl;
-}
 int main()
 {  
 	sync_false;
-	ll t,x,y,n ,m, s;
-	map<ll, vll> adj_list;
-	csf(t);
-	wl(t){
-		csf(n);		// no. of vertices
-		csf(m);		// no. of edges
-		wl(m){
-			csf(x);csf(y);
-			adj_list[x].pub(y);	// create an adj list
-			adj_list[y].pub(x);
+	ll N;
+	testcases(){
+		cin>>N;
+		if(N<3){
+			printf("%lld\n", N);
 		}
-		csf(s);			// starting point S
-		dis.pub(0);
-		repk(i,1,n+1){
-			i !=s ? dis.pub(-1): dis.pub(0);
-		}
-		bfs(s, adj_list,n);
-		tr(dis, it){
-			if(*it)
-				cpf(*it);	// print shortest distance of nodes from starting point S
-		}
-		cout<<endl;
-		adj_list.clear();
-		dis.clear();
+		else
+			printf("%lld\n", (6*(N*N)) - (12*N) +8 );
+		
+		
 	}
 	return 0;
 }
