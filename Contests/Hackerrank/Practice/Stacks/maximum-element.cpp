@@ -74,19 +74,34 @@ const unsigned char option8 = 0x80; // hex for 1000 0000
 
 using namespace std;
 
+inline ll max(stack <ll> s){
+	ll m = s.top();
+	while(!s.empty()){
+		if(m < s.top()){
+			m = s.top();
+		}
+		s.pop();
+	}
+	return m;
+}
 int main()
 {  
-	sync_false;
-	ll N;
+	ll t,x;
+	stack <ll> s;
+
 	testcases(){
-		cin>>N;
-		if(N<3){
-			printf("%lld\n", N);
+		sf(t);
+		switch(t){
+			case 1:
+				sf(x);
+				s.push(x);
+				break;
+			case 2:
+				s.pop();
+				break;
+			case 3:
+				printf("%lld\n", max(s));
 		}
-		else
-			printf("%lld\n", (6*(N*N)) - (12*N) +8 );
-		
-		
 	}
 	return 0;
 }

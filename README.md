@@ -1,13 +1,2 @@
-# Algorithms
-
-```sh
-Compilation of different Algorithms and Data Structures i've known so far.
-Beside, i will keep updating the repo!
-
-```
-
-```sh
-Implementation of diff Algorithms in Clojure,Python and C++
-
-```
+Implementation of various algorithms that I have learnt from [CLRS](https://en.wikipedia.org/wiki/Introduction_to_Algorithms) and other places across the web.
 
